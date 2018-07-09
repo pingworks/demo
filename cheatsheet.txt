@@ -1,0 +1,30 @@
+# compile application source code
+docker run --rm -it -v$(pwd):/src maven mvn package -f /src/pom.xml
+
+# build application docker image
+docker build -t demo:1.0 .
+
+# run application image locally
+docker run -it -p8080:8080 demo:1.0
+
+# tag and push application image
+docker tag demo:1.0 fbworkshop.azurecr.io/<name>/demo:1.0
+docker push fbworkshop.azurecr.io/<name>/demo:1.0
+
+# create ws-toolbox cnt
+kubectl run -it --rm --restart=Never --image fbworkshop.azurecr.io/cluk/debian-ws-toolbox:1.0 ws-toolbox
+
+# check pods /actuator url
+curl 172.23.60.37:8080/actuator  | jq
+
+# create demo pod/depl/svc
+kubectl create -f k8s/pod.yaml
+kubectl create -f k8s/deployment.yaml
+kubectl create -f k8s/service.yaml
+
+# chech service /actuator url
+curl http://demo/actuator | jq
+
+# check service load balancing
+while true; do sleep 1; curl http://demo/actuator; echo ; done
+
