@@ -19,3 +19,4 @@ spec:
         image: fbworkshop.azurecr.io/cluk/demo:1.0
         ports:
         - containerPort: 8080
+          name: springboot8080
