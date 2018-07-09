@@ -28,3 +28,9 @@ curl http://demo/actuator | jq
 # check service load balancing
 while true; do sleep 1; curl http://demo/actuator; echo ; done
 
+# application.properties as configmap
+kubectl create configmap demo-config --from-file=src/main/resources/demo.properties
+
+
+
+
