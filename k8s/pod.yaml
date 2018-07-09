@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
   - name: demo
-    image: fbworkshop.azurecr.io/cluk/demo:1.2
+    image: fbworkshop.azurecr.io/cluk/demo:1.3
     ports:
     - containerPort: 8080
