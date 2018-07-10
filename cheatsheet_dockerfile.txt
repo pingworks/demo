@@ -1,0 +1,96 @@
+# Dockerfile Cheat Sheet
+
+########################
+# INHERITANCE & BASICS #
+########################
+
+# Inheritance
+FROM <FQ Image Name>
+FROM nginx:1.31.0
+
+MAINTAINER joe.user@example.com
+
+# Env Variables
+ENV <key> <value>
+ENV <key>=<value>
+# Example:
+ENV APP_HOME /myapp
+RUN mkdir $APP_HOME
+
+# Workdir
+# The WORKDIR instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and
+# ADD instructions that follow it in the Dockerfile.
+WORKDIR /myapp
+
+# User
+# The USER instruction sets the user name (or UID) and optionally the user group (or GID
+# to use when running the image and for any RUN, CMD and ENTRYPOINT instructions that follow
+# it in the Dockerfile.
+USER <user>[:<group>]
+USER <UID>[:<GID>]
+
+# Specification for mount point (Info only)
+VOLUME ["/data"]
+
+# Specification for exposed port (Info only)
+EXPOSE 5900
+
+########################
+# ARGS                 #
+########################
+ARG <name>[=<default value>]
+# The ARG instruction defines a variable that users can pass at build-time to the builder with
+# the docker build command using the --build-arg <varname>=<value> flag.
+
+
+#######################
+# INSTALL & DO STUFF  #
+#######################
+RUN <xyz command>
+RUN apt-get update && apt-get install -y procps
+RUN apt-get update && \
+    apt-get install -y procps \
+    apache2
+
+#######################
+# COPY & ADD          #
+#######################
+
+# The COPY instruction copies new files or directories from <src> and adds them to the filesystem of
+# the container at the path <dest>.
+
+COPY [--chown=<user>:<group>] <src>... <dest>
+COPY [--chown=<user>:<group>] ["<src>",... "<dest>"]
+COPY assets/ /path/inside/container/
+COPY assets/image.png /path/inside/container/image.png
+
+# The ADD instruction copies new files, directories or remote file URLs from <src> and adds them
+# to the filesystem of the image at the path <dest>.
+
+ADD [--chown=<user>:<group>] <src>... <dest>
+ADD [--chown=<user>:<group>] ["<src>",... "<dest>"]
+
+#######################
+# ENTRYPOINT & CMD    #
+#######################
+Understand how CMD and ENTRYPOINT interact
+Both CMD and ENTRYPOINT instructions define what command gets executed when running a container.
+There are few rules that describe their co-operation.
+
+* Dockerfile should specify at least one of CMD or ENTRYPOINT commands.
+* ENTRYPOINT should be defined when using the container as an executable.
+* CMD should be used as a way of defining default arguments for an ENTRYPOINT command or for executing
+  an ad-hoc command in a container.
+* CMD will be overridden when running the container with alternative arguments.
+
+# set entrypoint
+# run as process (exec form)
+ENTRYPOINT ["executable", "param1", "param2"]
+
+# run inside shell (shell form)
+ENTRYPOINT command param1 param2
+
+# Example:
+FROM ubuntu
+ENTRYPOINT ["top", "-b"]
+CMD ["-c"]

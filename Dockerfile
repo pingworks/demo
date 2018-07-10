@@ -11,4 +11,4 @@ COPY pom.xml target/lib* /opt/lib/
 # we could do with a better way to know the name - or to always create an app.jar or something
 COPY target/*.jar /opt/app.jar
 WORKDIR /opt
-CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
+CMD ["java", "-Dspring.config.location=/etc/demo/config.properties", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
