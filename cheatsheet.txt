@@ -39,4 +39,4 @@ while true; do sleep 1; curl http://demo/actuator; echo ; done
 kubectl create configmap demo-config --from-file=src/main/resources/demo.properties
 
 # change all version numbers in yamls
-find ./k8s/ -name '*.yaml' | xargs -I '{}' sed -i -e 's;1\.3;1.4;g' {}
+find ./k8s/ -name '*.yaml' | xargs -I '{}' sed -i 's;1\.3;1.4;g' {}
