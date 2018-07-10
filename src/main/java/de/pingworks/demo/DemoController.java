@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
     @Autowired
     Environment env;
-    
-    @GetMapping("/env")
+
+    @GetMapping("/special")
 	public List<Map<String, Object>> getAllEnvVars() {
 		return Arrays.asList(getAllKnownProperties(env));
 	}
-	
+
 	public static Map<String, Object> getAllKnownProperties(Environment env) {
 
 		String[] ignoredKeys = {
@@ -107,7 +107,7 @@ public class DemoController {
 				  "user.timezone"
 			};
 		List<String> ignoredKeysList = Arrays.asList(ignoredKeys);
-		
+
 		Map<String, Object> rtn = new HashMap<>();
 	    if (env instanceof ConfigurableEnvironment) {
 	        for (PropertySource<?> propertySource : ((ConfigurableEnvironment) env).getPropertySources()) {
