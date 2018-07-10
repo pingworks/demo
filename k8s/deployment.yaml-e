@@ -16,14 +16,7 @@ spec:
     spec:
       containers:
       - name: demo
-        image: fbworkshop.azurecr.io/cluk/demo:1.4
+        image: fbworkshop.azurecr.io/cluk/demo:1.3
         ports:
         - containerPort: 8080
           name: springboot8080
-        volumeMounts:
-        - name: config
-          mountPath: /etc/demo
-      volumes:
-      - name: config
-        configMap:
-          name: demo-config
