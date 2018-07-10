@@ -1,5 +1,4 @@
 export VERSION=1.3
-export TOOLBOX_VERSION=1.0
 export REGNAMESPACE=cluk
 
 # compile application source code
@@ -16,7 +15,7 @@ docker tag demo:$VERSION fbworkshop.azurecr.io/$REGNAMESPACE/demo:$VERSION
 docker push fbworkshop.azurecr.io/$REGNAMESPACE/demo:$VERSION
 
 # create ws-toolbox cnt
-kubectl run -it --rm --restart=Never --image fbworkshop.azurecr.io/$REGNAMESPACE/debian-ws-toolbox:$TOOLBOX_VERSION ws-toolbox
+kubectl run -it --rm --restart=Never --image fbworkshop.azurecr.io/cluk/debian-ws-toolbox:1.0 ws-toolbox
 
 # check pods /actuator url
 curl -s 172.23.60.37:8080/actuator | jq

@@ -20,3 +20,8 @@ spec:
         ports:
         - containerPort: 8080
           name: springboot8080
+        resources:
+          limits:
+            memory: 1Gi
+          requests:
+            memory: 1Gi

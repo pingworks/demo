@@ -23,3 +23,8 @@ spec:
         env:
         - name: DEMO_LOG_LEVEL
           value: ERROR
+        resources:
+          limits:
+            memory: 1Gi
+          requests:
+            memory: 1Gi

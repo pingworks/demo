@@ -23,6 +23,11 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /etc/demo
+        resources:
+          limits:
+            memory: 1Gi
+          requests:
+            memory: 1Gi
       volumes:
       - name: config
         configMap:

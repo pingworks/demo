@@ -20,10 +20,14 @@ spec:
         ports:
         - containerPort: 8080
           name: springboot8080
+        resources:
+          limits:
+            memory: 1Gi
+          requests:
+            memory: 1Gi
         env:
         - name: DEMO_LOG_LEVEL
           valueFrom:
             configMapKeyRef:
               name: demo-config
               key: LOG_LEVEL
-
