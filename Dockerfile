@@ -3,6 +3,11 @@ ENV PORT 8080
 ENV CLASSPATH /opt/lib
 EXPOSE 8080
 
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends procps \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
 # copy pom.xml and wildcards to avoid this command failing if there's no target/lib directory
 COPY pom.xml target/lib* /opt/lib/
 
