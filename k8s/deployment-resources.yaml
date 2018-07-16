@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo
+  labels:
+    app: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - name: demo
+        image: image: registry.pingworks.net/docker/ws-demo:1.4
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 25Mi
+          limits:
+            cpu: 1000m
+            memory: 1Gi

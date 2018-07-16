@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo
+spec:
+  rules:
+  - host: demo.workshop1.user.azure.fleetboard.net
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: demo
+          servicePort: 80
