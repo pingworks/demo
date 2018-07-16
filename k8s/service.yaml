@@ -10,5 +10,5 @@ spec:
   ports:
   - name: demo80
     port: 80
-    targetPort: springboot8080
+    targetPort: 8080
     protocol: TCP
