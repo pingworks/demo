@@ -1,0 +1,20 @@
+kubectl run --image=birka/kubetester:0.0.1 --rm -it bash
+
+# Kubia Javascript app
+fbworkshop.azurecr.io/module3/kubia:v1
+fbworkshop.azurecr.io/module3/kubia:v2
+fbworkshop.azurecr.io/module3/kubia:v3
+fbworkshop.azurecr.io/module3/kubia:v4
+
+# Example with kubia rc and service
+kubectl create -f kubia-rc-and-service-v1.yaml
+kubectl create -f kubia-rc-v2.yaml
+kubectl get rc
+kubectl get pods
+
+# run curl in while true loop:
+kubectl get svc
+kube
+while true; do curl -sS http://kubia; sleep .5; done
+
+# delete all

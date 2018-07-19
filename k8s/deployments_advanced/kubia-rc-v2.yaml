@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: kubia-v2
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: kubia
+      labels:
+        app: kubia-v2
+    spec:
+      containers:
+      - image: fbworkshop.azurecr.io/module3/kubia:v2
+        name: nodejs
