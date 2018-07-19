@@ -11,5 +11,5 @@ kubectl create -f fortune-pod.yaml
 # Get inside(s)
 kubectl get pods
 
-kubectl exec -it fortune-5456qw4e -c html-generator
-kubectl exec -it fortune-137561tg -c html-webserver
+kubectl exec -it fortune -c html-generator
+kubectl exec -it fortune -c web-server

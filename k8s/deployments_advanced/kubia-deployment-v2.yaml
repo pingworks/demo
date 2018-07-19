@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: kubia
 spec:
-  replicas: 3
   template:
     metadata:
       name: kubia
@@ -11,16 +10,5 @@ spec:
         app: kubia
     spec:
       containers:
-      - image: luksa/kubia:v1
+      - image: fbworkshop.azurecr.io/module3/kubia:v2
         name: nodejs
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: kubia
-spec:
-  selector:
-    app: kubia
-  ports:
-  - port: 80
-    targetPort: 8080

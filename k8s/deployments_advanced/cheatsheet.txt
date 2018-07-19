@@ -6,15 +6,15 @@ fbworkshop.azurecr.io/module3/kubia:v2
 fbworkshop.azurecr.io/module3/kubia:v3
 fbworkshop.azurecr.io/module3/kubia:v4
 
-# Example with kubia rc and service
+# Example Blue/Green with kubia rc and service
 kubectl create -f kubia-rc-and-service-v1.yaml
 kubectl create -f kubia-rc-v2.yaml
 kubectl get rc
 kubectl get pods
 
 # run curl in while true loop:
-kubectl get svc
-kube
+kubectl get svc kubia
 while true; do curl -sS http://kubia; sleep .5; done
 
-# delete all
+# edit service to show blue/green effect
+kubectl edit svc kubia

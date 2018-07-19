@@ -4,7 +4,7 @@ metadata:
   name: fortune
 spec:
   containers:
-  - image: fbworkshop.azurecr.io/module3/fortune:0.1
+  - image: fbworkshop.azurecr.io/module3/fortune:0.2
     name: html-generator
     volumeMounts:
     - name: html
