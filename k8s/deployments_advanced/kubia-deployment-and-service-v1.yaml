@@ -4,6 +4,7 @@ metadata:
   name: kubia
 spec:
   replicas: 3
+  minReadySeconds: 10
   template:
     metadata:
       name: kubia
@@ -11,7 +12,7 @@ spec:
         app: kubia
     spec:
       containers:
-      - image: luksa/kubia:v1
+      - image: fbworkshop.azurecr.io/module3/kubia:v1
         name: nodejs
 ---
 apiVersion: v1
