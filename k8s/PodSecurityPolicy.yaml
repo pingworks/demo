@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: fleetboard-default
+  annotations:
+    seccomp.security.alpha.kubernetes.io/allowedProfileNames: '*'
+spec:
+  privileged: false
+  # Required to prevent escalations to root.
+  allowPrivilegeEscalation: true
+  defaultAllowPrivilegeEscalation: false
+  allowedCapabilities:
+  - IPC_LOCK
+  - SYS_RESOURCE
+  - SETUID
+  - SETGID
+  - FSETID
+  requiredDropCapabilities:
+  - KILL
+  - MKNOD
+  - NET_ADMIN
+  - NET_RAW
+  - SYS_ADMIN
+  - SYS_BOOT
+  - SYS_MODULE
+  - SYS_PACCT
+  - SYS_RAWIO
+  - SYS_TIME
+  - SYS_TTY_CONFIG
+  - SYS_CHROOT
+  - SYSLOG
+  - WAKE_ALARM
+  hostNetwork: false
+  hostPorts:
+  - min: 0
+    max: 0
+  hostIPC: false
+  hostPID: false
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  fsGroup:
+    rule: RunAsAny
+  volumes:
+  - 'configMap'
+  - 'emptyDir'
+  - 'projected'
+  - 'secret'
+  - 'downwardAPI'
+  - 'persistentVolumeClaim'
+  - 'azureFile'
+  - 'azureDisk'
